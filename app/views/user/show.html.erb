@@ -1,11 +1,14 @@
 <% provide(:page_title, "Những bài viết của #{@user.full_name}") %>
 
 <div class="flex flex-col items-center">
-  <img src='<%= avatar_url(current_user) %>' alt="avatar">
+  <img src='<%= avatar_url(@user) %>' alt="avatar">
   <ul>
     <li><%= @user.full_name %></li>
     <li><%= @user.email %></li>
   </ul>
+  <%= render "shared/follow_stats" %>
+  <%= render "follow_form" %>
+
   <div class="flex flex-col">
     <% if @user.posts.any? %>
       <%= render @user.posts %>

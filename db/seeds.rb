@@ -10,10 +10,24 @@ User.create!([
                {full_name: "Phuong Anh", email: "pahmt@gmail.com", password: "123456", password_confirmation: "123456"},
              ])
 
+100.times do
+  User.create!({full_name: Faker::Name.name,
+                email: Faker::Internet.email,
+                password: "123456",
+                password_confirmation: "123456"})
+end
+
 users= User.all
-20.times do
-  users.each do |user|
-    user.posts.create!({title: Faker::Lorem.sentence(word_count: 3),
+users_write_post = users[1..10]
+10.times do
+  users_write_post.each do |user|
+    user.posts.create!({title: Faker::Lorem.sentence(word_count: 7),
                         content: Faker::Lorem.sentence(word_count: 200, supplemental: false)})
   end
 end
+
+user = users.first
+following = users[2..50]
+followers = users[3..40]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }

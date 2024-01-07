@@ -5,4 +5,7 @@ class Post < ApplicationRecord
   validates :user_id, presence: true
   validates :title, presence: true, length: {minimum: 1}
   validates :content, presence: true, length: {minimum: 1}
+
+  acts_as_commontable dependent: :destroy
+
 end

@@ -9,3 +9,5 @@ pin 'flowbite', to: 'https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowb
 pin 'stimulus-notification' # @2.2.0
 pin 'hotkeys-js' # @3.13.3
 pin 'stimulus-use' # @0.51.3
+pin "jquery", to: "jquery.min.js", preload: true
+pin "jquery_ujs", to: "jquery_ujs.js", preload: true

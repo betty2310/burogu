@@ -3,7 +3,7 @@
   <h3 class="font-bold font-xl"><%= post.title %></h3>
   <%= strip_words post.content %>
   <%= link_to "Read More", post_path(post) %>
-  <% unless logged_in_user?(current_user) %>
+  <% unless logged_in_user?(post.user) %>
     <p>Tác giả: <%= link_to user_path(post.user.id) do %>
         <%= post.user.full_name %>
       <% end %>

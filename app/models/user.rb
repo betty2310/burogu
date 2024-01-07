@@ -20,6 +20,8 @@ class User < ApplicationRecord
 
   has_many :followers, through: :passive_relationships, source: :follower
 
+  acts_as_commontator
+
   # Follows a user.
   def follow(other_user)
     following << other_user unless self == other_user

@@ -7,7 +7,9 @@
     <li><%= @user.email %></li>
   </ul>
   <%= render "shared/follow_stats" %>
+  <% if current_user %>
   <%= render "follow_form" %>
+  <% end %>
 
   <div class="flex flex-col">
     <% if @user.posts.any? %>

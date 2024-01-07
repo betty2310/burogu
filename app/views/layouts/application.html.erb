@@ -23,7 +23,7 @@
 </head>
 
 <body>
-<%= render 'shared/header' if user_signed_in? %>
+<%= render 'shared/header' if render_header? %>
 <div class="container">
   <% flash.each do |message_type, message| %>
     <%= render "shared/alert", message: message, type: message_type %>

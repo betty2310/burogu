@@ -22,4 +22,8 @@ module ApplicationHelper
     gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
     "https://www.gravatar.com/avatar/#{gravatar_id}?s=200&d=robohash&r=x"
   end
+
+  def render_header?
+    !request.fullpath.include?("auth")
+  end
 end

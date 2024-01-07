@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :get_user
+  before_action :authenticate_user! , only: [:new, :create, :destroy]
+  before_action :get_user , only: [:new, :create, :destroy]
   before_action :correct_user,   only: :destroy
 
   def show

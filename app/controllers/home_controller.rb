@@ -1,6 +1,4 @@
 class HomeController < ApplicationController
-  before_action :authenticate_user!
-
   def feed
     if current_user == nil
       @posts = Post.order(created_at: :desc).limit(21)

@@ -1,4 +1,12 @@
 module ApplicationHelper
+  def logged_in_user?(user)
+    if current_user == user
+      true
+    else
+      false
+    end
+  end
+
   def full_title(page_title = '')
     base_title = "Blog"
     if page_title.empty?

@@ -1,4 +1,7 @@
 module ApplicationHelper
+  include Pagy::Frontend
+
+
   def logged_in_user?(user)
     if current_user == user
       true

@@ -4,11 +4,11 @@ class UserController < ApplicationController
 
   def index
     @user = current_user
-    @users = User.all
+    @pagy, @users = pagy User.all, items: 8
   end
 
   def show
-    @posts = @user.posts
+    @pagy, @posts = pagy @user.posts, items: 8
   end
 
   private

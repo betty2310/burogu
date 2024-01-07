@@ -1,0 +1,16 @@
+<% provide(:page_title, "Những bài viết của #{@user.full_name}") %>
+
+<div class="flex flex-col items-center">
+  <img src='<%= avatar_url(current_user) %>' alt="avatar">
+  <ul>
+    <li><%= @user.full_name %></li>
+    <li><%= @user.email %></li>
+  </ul>
+  <div class="flex flex-col">
+    <% if @user.posts.any? %>
+      <%= render @user.posts %>
+    <% else %>
+      <p>Không có bài viết nào</p>
+    <% end %>
+  </div>
+</div>

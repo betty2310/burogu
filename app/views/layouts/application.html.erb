@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= full_title(yield(:page_title)) %></title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.turbo.min.js"></script>
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+  <script src="https://cdn.tiny.cloud/1/<%= ENV['rich_editor_key'] %>/tinymce/6/tinymce.min.js"
+          referrerpolicy="origin">
+  </script>
+  <script>
+      tinymce.init({
+          selector: '.tinymce',
+          plugins: 'lists link image table code wordcount lists',
+                });
+  </script>
+
+</head>
+
+<body>
+<%= render 'shared/header' if user_signed_in? %>
+<div class="container">
+  <% flash.each do |message_type, message| %>
+    <%= render "shared/alert", message: message, type: message_type %>
+  <% end %>
+  <%= yield %>
+  <%#= render 'shared/footer' if user_signed_in? %>
+</div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+</html>

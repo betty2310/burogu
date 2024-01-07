@@ -1,0 +1,9 @@
+<div class="flex flex-col my-4">
+  <p id="post-<%= post.id %>">
+  <h3 class="font-bold font-xl"><%= post.title %></h3>
+  <%= strip_words post.content %>
+  <%= link_to "Read More", post_path(post) %>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(post.created_at) %> ago.
+  </span>
+</div>

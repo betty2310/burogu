@@ -37,4 +37,8 @@ module ApplicationHelper
   def render_header?
     !request.fullpath.include?("auth")
   end
+
+  def number_posts(user)
+    user.posts.count
+  end
 end

@@ -1,0 +1,28 @@
+<div class="grid grid-cols-4 gap-4 m-3">
+
+  <% posts.each do |post| %>
+    <div class="flex flex-col justify-between block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 my-2">
+      <div class="pb-3">
+        <%= link_to post_path(post) do %>
+          <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 hover:text-gray-700 dark:text-white"><%= post.title %></h5>
+        <% end %>
+        <p class="dark:text-white"><%= strip_words post.content %> </p>
+      </div>
+      <div class="flex flex-wrap justify-between items-center">
+
+      </div>
+      <div class="flex items-center">
+        <%= link_to user_path(post.user.id) do %>
+          <div class="flex items-center">
+            <img class="w-10 mr-2 mt-2 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+                 src="<%= avatar_url post.user %>" alt="Bordered avatar"/>
+            <p class="font-bold text-gray-800 hover:text-gray-500 dark:text-white"> <%= post.user.full_name %> </p>
+          </div>
+        <% end %>
+        <div class="timestamp text-sm text-gray-500">
+          ・ <%= time_ago_in_words(post.created_at) %> ago.
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

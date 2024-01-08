@@ -8,4 +8,12 @@ class Post < ApplicationRecord
 
   acts_as_commontable dependent: :destroy
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[title]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["user"]
+  end
+
 end

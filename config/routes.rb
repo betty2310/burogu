@@ -9,6 +9,7 @@ Rails.application.routes.draw do
              }
 
   root 'home#feed'
+  get 'search', to: 'home#explore'
   resources :users, only: [:index, :show] do
     member do
       get :following, :followers

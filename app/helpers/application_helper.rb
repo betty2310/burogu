@@ -10,6 +10,14 @@ module ApplicationHelper
     end
   end
 
+  def same_user?(u, v)
+    if u == v
+      true
+    else
+      false
+    end
+  end
+
   def full_title(page_title = '')
     base_title = "Blog"
     if page_title.empty?

@@ -1,10 +1,11 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
   # before_action :authenticate_user! , only: [:index, :show]
   before_action :get_current_user, only: [:show]
 
   def index
-    @user = current_user
-    @pagy, @users = pagy User.all, items: 8
+    # @users = current_user
+    @q = User.ransack(params[:q])
+    @pagy, @users = pagy @q.result(distinct: true), items: 8
   end
 
   def show

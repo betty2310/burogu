@@ -11,28 +11,36 @@ class User < ApplicationRecord
            foreign_key: "follower_id",
            dependent: :destroy
 
-  has_many :following,through: :active_relationships, source: :followed
+  has_many :following, through: :active_relationships, source: :followed
 
   has_many :passive_relationships,
-            class_name: "Relationship",
-            foreign_key: "followed_id",
-            dependent: :destroy
+           class_name: "Relationship",
+           foreign_key: "followed_id",
+           dependent: :destroy
 
   has_many :followers, through: :passive_relationships, source: :follower
 
   acts_as_commontator
 
-  # Follows a user.
+  def self.ransackable_attributes(auth_object = nil)
+    %w[email full_name]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[email full_name]
+  end
+
+  # Follows a users.
   def follow(other_user)
     following << other_user unless self == other_user
   end
 
-  # Unfollows a user.
+  # Unfollows a users.
   def unfollow(other_user)
     following.delete(other_user)
   end
 
-  # Returns true if the current user is following the other user.
+  # Returns true if the current users is following the other users.
   def following?(other_user)
     following.include?(other_user)
   end

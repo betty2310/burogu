@@ -9,7 +9,7 @@ Rails.application.routes.draw do
              }
 
   root 'home#feed'
-  resources :user, only: [:index, :show] do
+  resources :users, only: [:index, :show] do
     member do
       get :following, :followers
     end

@@ -6,7 +6,7 @@ Commontator.configure do |config|
   # current_user_proc
   # Type: Proc
   # Arguments: the current controller (ActionController::Base) or view (ActionView::Base)
-  # Returns: the current user (acts_as_commontator)
+  # Returns: the current users (acts_as_commontator)
   # The default works for Devise and similar authentication plugins
   # If you define your own custom method, make sure it is accessible to all controllers and views
   # by adding the method and a call to helper_method to ActionController::Base
@@ -29,27 +29,27 @@ Commontator.configure do |config|
 
   # user_name_proc
   # Type: Proc
-  # Arguments: a user (acts_as_commontator)
-  # Returns: the user's name (String)
-  # Default: ->(user) { I18n.t('commontator.anonymous') } (all users are anonymous)
+  # Arguments: a users (acts_as_commontator)
+  # Returns: the users's name (String)
+  # Default: ->(users) { I18n.t('commontator.anonymous') } (all users are anonymous)
   config.user_name_proc = ->(user) { user.full_name }
 
   # user_link_proc
   # Type: Proc
-  # Arguments: a user (acts_as_commontator),
+  # Arguments: a users (acts_as_commontator),
   #            the app_routes (ActionDispatch::Routing::RoutesProxy)
-  # Returns: a path to the user's `show` page (String)
-  # If anything non-blank is returned, the user's name in comments
+  # Returns: a path to the users's `show` page (String)
+  # If anything non-blank is returned, the users's name in comments
   # comments will become a hyperlink pointing to this path
   # The main application's routes can be accessed through the app_routes object
-  # Default: ->(user, app_routes) { '' } (no link)
+  # Default: ->(users, app_routes) { '' } (no link)
   config.user_link_proc = ->(user, app_routes) { app_routes.user_path(user) }
 
   # user_avatar_proc
   # Type: Proc
-  # Arguments: a user (acts_as_commontator), a view (ActionView::Base)
-  # Returns: a String containing an HTML <img> tag pointing to the user's avatar image
-  # The optional commontator_gravatar_image_tag helper takes a user object,
+  # Arguments: a users (acts_as_commontator), a view (ActionView::Base)
+  # Returns: a String containing an HTML <img> tag pointing to the users's avatar image
+  # The optional commontator_gravatar_image_tag helper takes a users object,
   # a border size and an options hash for Gravatar, and produces a Gravatar image tag
   # See available options at https://en.gravatar.com/site/implement/images/)
   # Note: Gravatar has several security implications for your users
@@ -58,8 +58,8 @@ Commontator.configure do |config|
   #       If you absolutely want to keep users' email addresses or identities secret,
   #       do not use Gravatar or similar services
   #       If you are sure you want to use Gravatar, uncomment the command inside the block.
-  # Default: ->(user, view) do
-  #   # view.commontator_gravatar_image_tag(user, 1, s: 60, d: 'mm')
+  # Default: ->(users, view) do
+  #   # view.commontator_gravatar_image_tag(users, 1, s: 60, d: 'mm')
   # end
   config.user_avatar_proc = ->(user, view) do
     view.commontator_gravatar_image_tag(user, 1, s: 200, d: 'robohash')
@@ -67,22 +67,22 @@ Commontator.configure do |config|
 
   # user_email_proc
   # Type: Proc
-  # Arguments: a user (acts_as_commontator), a mailer (ActionMailer::Base)
-  # Returns: the user's email address (String)
+  # Arguments: a users (acts_as_commontator), a mailer (ActionMailer::Base)
+  # Returns: the users's email address (String)
   # The default works for Devise's defaults
   # If the mailer argument is nil, Commontator intends to hash the email and send the hash
-  # to Gravatar, so you should always return the user's email address (if using Gravatar)
+  # to Gravatar, so you should always return the users's email address (if using Gravatar)
   # If the mailer argument is not nil, then Commontator intends to send an email to
   # the address returned; you can prevent it from being sent by returning a blank String
-  # Default: ->(user, mailer) { user.try(:email) || '' }
+  # Default: ->(users, mailer) { users.try(:email) || '' }
   config.user_email_proc = ->(user, mailer) { user.try(:email) || '' }
 
   # user_mentions_proc
   # Type: Proc
   # Arguments:
-  #   the current user (acts_as_commontator)
+  #   the current users (acts_as_commontator)
   #   the current thread (Commontator::Thread)
-  #   the search query inputted by user (String)
+  #   the search query inputted by users (String)
   # Returns: an ActiveRecord Relation object
   # Important notes:
   #
@@ -91,7 +91,7 @@ Commontator.configure do |config|
   #  - The proc will be called internally with an empty search string.
   #    In that case, it MUST return all users that can be mentioned.
   #
-  #  - With mentions enabled, any registered user in your app is able
+  #  - With mentions enabled, any registered users in your app is able
   #    to call this proc with any search query >= 3 characters.
   #    Make sure to handle SQL escaping properly and that the
   #    attribute being searched does not contain sensitive information.
@@ -118,18 +118,18 @@ Commontator.configure do |config|
 
   # thread_read_proc
   # Type: Proc
-  # Arguments: a thread (Commontator::Thread), a user (acts_as_commontator)
-  # Returns: a Boolean, true if and only if the user should be allowed to read that thread
-  # Note: can be called with a user object that is nil (if they are not logged in)
-  # Default: ->(thread, user) { true } (anyone can read any thread)
+  # Arguments: a thread (Commontator::Thread), a users (acts_as_commontator)
+  # Returns: a Boolean, true if and only if the users should be allowed to read that thread
+  # Note: can be called with a users object that is nil (if they are not logged in)
+  # Default: ->(thread, users) { true } (anyone can read any thread)
   config.thread_read_proc = ->(thread, user) { true }
 
   # thread_moderator_proc
   # Type: Proc
-  # Arguments: a thread (Commontator::Thread), a user (acts_as_commontator)
-  # Returns: a Boolean, true if and only if the user is a moderator for that thread
+  # Arguments: a thread (Commontator::Thread), a users (acts_as_commontator)
+  # Returns: a Boolean, true if and only if the users is a moderator for that thread
   # If you want global moderators, make this proc true for them regardless of thread
-  # Default: ->(thread, user) { false } (no moderators)
+  # Default: ->(thread, users) { false } (no moderators)
   config.thread_moderator_proc = ->(thread, user) { false }
 
   # comment_editing

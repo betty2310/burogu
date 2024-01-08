@@ -1,59 +1,74 @@
-<div class="flex justify-center w-full items-center flex-col">
-
-  <h2 class="font-bold text-xl text-orange-500 hover:text-orange-400">Log in</h2>
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="flex flex-col gap-2">
-      <div class="field">
-        <%= f.label :email %><br/>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :password %><br/>
-        <%= f.password_field :password, autocomplete: "current-password" %>
-      </div>
-
-      <% if devise_mapping.rememberable? %>
-        <div class="field">
-          <%= f.check_box :remember_me %>
-          <%= f.label :remember_me %>
+<div class="relative py-4">
+  <div class="container relative m-auto px-6 text-gray-500 md:px-12 xl:px-40">
+    <div class="m-auto space-y-8 md:w-8/12 lg:w-6/12 xl:w-6/12">
+      <div class="flex items-center">
+      <%= image_tag "burogu.png", class: "ml-4 w-32", alt: "logo" %>
+        <div>
+        <p class="flex items-center justify-start font-rosarivo text-3xl text-black">
+          Welcome to Burogu ~ ブルゴ
+        </p>
+          <p class="font-rosarivo text-gray-900">
+            Innovating One Byte at a Time
+          </p>
         </div>
-      <% end %>
-
-      <div class="actions">
-        <button class="bg-orange-500">
-        <%= f.submit "Log in" %>
-        </button>
       </div>
-  <% end %>
-  <%- if controller_name != 'sessions' %>
-  <%= link_to "Log in", new_session_path(resource_name) %><br />
-<% end %>
+      <div class="rounded-3xl border border-gray-100 bg-white dark:bg-gray-800 dark:border-gray-700 shadow-2xl shadow-gray-600/10 backdrop-blur-2xl">
+        <div class="p-4 py-8 sm:p-8">
+          <h2 class="mb-4 text-xl font-bold text-gray-800 dark:text-white">Sign in to your account</h2>
+          <%- if devise_mapping.omniauthable? %>
+            <%- resource_class.omniauth_providers.each do |provider| %>
+              <%= button_to omniauth_authorize_path(resource_name, provider), data: { turbo: false },
+                            class: "flex items-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" do %>
+                <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 19">
+                  <path fill-rule="evenodd" d="M8.842 18.083a8.8 8.8 0 0 1-8.65-8.948 8.841 8.841 0 0 1 8.8-8.652h.153a8.464 8.464 0 0 1 5.7 2.257l-2.193 2.038A5.27 5.27 0 0 0 9.09 3.4a5.882 5.882 0 0 0-.2 11.76h.124a5.091 5.091 0 0 0 5.248-4.057L14.3 11H9V8h8.34c.066.543.095 1.09.088 1.636-.086 5.053-3.463 8.449-8.4 8.449l-.186-.002Z" clip-rule="evenodd"/>
+                </svg>
+                Sign in with Google
+              <% end %>
+              <br/>
+            <% end %>
+          <% end %>
 
-<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Sign up", new_registration_path(resource_name) %><br />
-<% end %>
+          <div class="space-y-8">
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+              <%= render "devise/shared/error_messages", resource: resource %>
+
+              <div class="pb-3">
+                <%= f.label :email, class: "text-gray-600 dark:text-gray-300 text-sm font-medium" %><br/>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "focus:outline-none block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:ring-2 focus:ring-gray-300" %>
+              </div>
+
+              <div class="pb-3">
+                <%= f.label :password, class: "text-gray-600 dark:text-gray-300 text-sm font-medium" %><br/>
+                <%= f.password_field :password, autocomplete: "current-password", class: "focus:outline-none block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:ring-2 focus:ring-gray-400" %>
+              </div>
+
+              <% if devise_mapping.rememberable? %>
+                <div class="pb-3">
+                  <%= f.check_box :remember_me, class: "text-gray-600 dark:text-gray-300" %>
+                  <%= f.label :remember_me, class: "" %>
+                </div>
+              <% end %>
 
 
-<button class="btn-primary">
-<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
-<% end %>
+              <div class="flex items-center justify-center">
+              <button class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                <%= f.submit "Log in" %>
+              </button>
+              </div>
+            <% end %>
 
-</button>
+            <p class="border-t border-gray-100 dark:border-gray-700 pt-6 text-sm text-gray-500 dark:text-gray-400">
+              Don't have an account ?
+              <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+                <%= link_to "Sign up", new_registration_path(resource_name), class: "hover:text-blue-500" %><br/>
+              <% end %>
+            </p>
 
-<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-  <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
-<% end %>
+          </div>
+        </div>
+      </div>
 
-<%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
-  <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
-<% end %>
-
-<%- if devise_mapping.omniauthable? %>
-  <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false } %><br />
-  <% end %>
-<% end %>
+    </div>
   </div>
 </div>
+

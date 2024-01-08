@@ -1,4 +1,4 @@
 <%= form_with(model: current_user.active_relationships.build) do |f| %>
   <div><%= hidden_field_tag :followed_id, @user.id %></div>
-  <%= f.submit "Follow", class: "bg-blue-500" %>
+  <%= f.submit "Follow", class: "text-blue-500 bg-blue-200 hover:bg-blue-300 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-10 py-2.5 me-2 mb-2 mt-6 dark:text-blue-200 dark:bg-blue-500 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 cursor-pointer" %>
 <% end %>

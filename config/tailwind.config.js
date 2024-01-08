@@ -13,6 +13,8 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+        rosarivo: ['Rosarivo', 'serif'],
+        noto: ['Noto Serif', 'serif'],
       },
     },
   },

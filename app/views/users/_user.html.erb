@@ -1,0 +1,14 @@
+<div class="m-3 flex flex-col justify-between block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+  <div class="flex items-center justify-around">
+    <%= link_to user_path(user.id) do %>
+      <div class="flex items-center justify-around gap-2">
+        <img class="w-10 mr-2 mt-2 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+             src="<%= avatar_url user %>" alt="Bordered avatar"/>
+        <div class="flex flex-col items-start justify-between">
+        <p class="font-bold text-gray-800 hover:text-gray-500 dark:text-white"> <%= user.full_name %> </p>
+        <p><%= pluralize (number_posts user), "posts" %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

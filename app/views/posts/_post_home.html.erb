@@ -1,8 +1,8 @@
 <div class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 my-6">
   <p id="post-<%= post.id %>">
     <%= link_to post_path(post) do %>
-    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 hover:text-gray-700 dark:text-white"><%= post.title %></h5>
-  <% end %>
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 hover:text-gray-700 dark:text-white"><%= post.title %></h5>
+    <% end %>
   <p class="dark:text-white"><%= strip_words post.content %> </p>
   <% unless same_user?(post.user, current_user) %>
     <div class="flex flex-wrap justify-between items-center">

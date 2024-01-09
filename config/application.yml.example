@@ -1,0 +1,6 @@
+google_client_id:  <YOUR_CLIENT_ID>
+google_client_secret: <YOUR_SECRET_ID>
+
+# for wysiwyg editor
+# link: https://www.tiny.cloud/
+rich_editor_key: <YOUR_TINYCME_KEY>

@@ -17,7 +17,7 @@
 
   .actions {
     float: right;
-
+    color: #3f83f8;
     margin-left: 10px;
   }
 
@@ -32,7 +32,7 @@
   }
 
   .children {
-    padding-left: 15px;
+    padding-left: 40px;
   }
 
   /* Modified from: https://www.strangerstudios.com/sandbox/pagination/diggstyle.php */
@@ -92,19 +92,56 @@
     width: 100%;
 
     padding: 0;
+    height: 50px;
+
+    border: #d1d5db 1px solid;
+    border-radius: 10px;
 
     overflow: auto;
   }
 
+  textarea:focus {
+    outline: none;
+  }
+
   .submit {
     margin: 10px 0;
+
+    input {
+      color: #1f2937; /* text-gray-900 */
+      background-color: #ffffff; /* bg-white */
+      border: 1px solid #d1d5db; /* border border-gray-300 */
+      outline: none; /* focus:outline-none */
+      font-weight: 500; /* font-medium */
+      border-radius: 9999px; /* rounded-full */
+      font-size: 0.875rem; /* text-sm */
+      padding: 0.625rem 1.25rem; /* px-5 py-2.5 */
+      margin-right: 0.5rem; /* me-2 */
+      margin-bottom: 0.5rem; /* mb-2 */
+    }
+
+    /* Hover State */
+    input:hover {
+      background-color: #f3f4f6; /* hover:bg-gray-100 */
+    }
+
+    /* Focus State */
+    input:focus {
+      box-shadow: 0 0 0 4px #e2e8f0; /* focus:ring-4 focus:ring-gray-200 */
+    }
   }
+
 }
 
+.thread {
+  a {
+    color: #0000EE;
+  }
+}
 .commontator .comment {
   &, .body blockquote {
     border: none;
-    border-top: 1px solid;
+    //border-top: 1px solid;
     border-left: 1px solid;
 
     font-weight: normal;
@@ -143,6 +180,13 @@
     float: left;
 
     margin-right: 7px;
+
+  }
+
+  img {
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
   }
 
   .votes {
@@ -177,6 +221,7 @@
 
   .body {
     overflow: hidden;
+    padding-left: 20px;
 
     blockquote {
       border-color: #CCC;
@@ -189,6 +234,7 @@
   }
 
   .reply, .timestamp {
+
     font-size: 90%;
   }
 
@@ -213,6 +259,58 @@
   }
 }
 
-h1 {
-  font-size: 150%;
+.text-blog {
+  a {
+    color: #0000EE;
+    text-decoration: underline;
+  }
+
+  h1 {
+    font-size: 150%;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-bottom: 1em;
+    margin-top: 1em;
+  }
+  
+  ol {
+    margin: 0 0 1.5em 1.5em;
+    mask-type: alpha;
+    list-style-type: decimal;
+    li {
+      margin-bottom: 0.5em;
+      margin-top: 0.5em;
+    }
+  }
+  
+  ul {
+    margin: 0 0 1.5em 1.5em;
+    mask-type: alpha;
+    list-style-type: disc;
+    li {
+      margin-bottom: 0.5em;
+      margin-top: 0.5em;
+    }
+  }
+  
+  blockquote {
+    margin: 2em 0 1.5em 1.5em;
+    padding-left: 1em;
+    border-left: 0.5em solid #ccc;
+  }
+  h2 {
+    font-size: 120%;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-bottom: 1em;
+    margin-top: 1em;
+  }
+  
+  h3 {
+    font-size: 110%;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-bottom: 1em;
+    margin-top: 1em;
+  }
 }

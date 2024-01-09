@@ -1,4 +1,6 @@
+<div class="lg:px-[340px]">
 <% @posts.each do |post| %>
-  <%= render post %>
+  <%= render partial: "posts/post_home", locals: {post: post} %>
 <% end %>
 <%== pagy_nav(@pagy) %>
+</div>

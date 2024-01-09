@@ -19,7 +19,7 @@ module ApplicationHelper
   end
 
   def full_title(page_title = '')
-    base_title = "Blog"
+    base_title = "Burogu - Social blog"
     if page_title.empty?
       base_title
     else
